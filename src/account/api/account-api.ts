@@ -1,7 +1,7 @@
 import { Context } from "hono";
 
 
-const login = async (c: Context) => {
+export const login = async (c: Context) => {
 	const {email, password} = await c.req.json<{
 		email: string;
 		password: string;
@@ -11,4 +11,12 @@ const login = async (c: Context) => {
 	return c.json(
 		{ message: "Login successful", email, password }
 	)
+}
+
+export const register = async (c: Context) => {
+	const { email, password } = await c.req.json<{
+		email: string;
+		password: string;
+	}>();
+	
 }
