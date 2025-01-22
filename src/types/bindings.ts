@@ -1,4 +1,5 @@
-import * as jose from 'jose'
+// import * as jose from 'jose'
+import type { JwtVariables } from 'hono/jwt'
 
 
 export type Environment = {
@@ -18,7 +19,5 @@ export type Environment = {
 		AWS_REGION: string
 		EMAIL_SENDER: string
 	},
-	Variables: {		
-		payload: jose.JWTPayload
-	}
+	Variables: JwtVariables
 }
