@@ -3,22 +3,23 @@ import { logger } from 'hono/logger'
 import { prettyJSON } from 'hono/pretty-json'
 import { cors } from 'hono/cors'
 
-const app = new Hono()
+import { Environment } from './types/bindings'
+import httpStatus from 'http-status'
+import { errorHandler } from './middlewares/error'
+import { ApiError } from './utils/api-error'
+import { initV1Route } from './route'
 
-app.use(
-  '*',
-  cors({
-    origin: '*',
-    allowMethods: ['GET', 'POST', 'PUT', 'DELETE']
+const app = new Hono<Environment>()
 
-  })
-)
-
+app.use('*', cors())
 app.use('*', logger(), prettyJSON())
 
+app.notFound(() => {
+  throw new ApiError(httpStatus.NOT_FOUND, 'Not Found');
+})
 
-// app.get('/', (c) => {
-//   return c.text('Hello Hono!')
-// })
+app.onError(errorHandler);
+
+initV1Route(app);
 
 export default app
