@@ -1,5 +1,6 @@
-// import * as jose from 'jose'
-import type { JwtVariables } from 'hono/jwt'
+
+
+import { IJwtPayload } from '@/utils/jwt-agent/jwt-types'
 
 
 export type Environment = {
@@ -29,5 +30,7 @@ export type Environment = {
 		AWS_SECRET_ACCESS_KEY: string
 		AWS_REGION: string
 	},
-	Variables: JwtVariables
+	Variables: {
+		payload: IJwtPayload
+	}
 }

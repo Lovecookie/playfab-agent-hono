@@ -1,4 +1,4 @@
-import { IJwtAgent, JwtExpiredInType } from './jwt-types'
+import { IJwtAgent, IJwtPayload, JwtExpiredInType } from './jwt-types'
 import { honoJwtAgent } from './hono-jwt-extensions'
 import { joseJwtAgent } from './jose-jwt-extensions'
 
@@ -15,7 +15,7 @@ export class JwtAgent implements IJwtAgent {
 		return await this.agent.signAsync(payload, expiredIn, signatureKey)
 	}
 
-	async verifyAsync(token: string, signatureKey: string): Promise<any | null> {
+	async verifyAsync(token: string, signatureKey: string): Promise<IJwtPayload | null> {
 		return await this.agent.verifyAsync(token, signatureKey)
 	}
 }
