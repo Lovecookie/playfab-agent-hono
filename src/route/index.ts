@@ -1,7 +1,7 @@
 import { Hono } from "hono"
 
 
-import { Environment } from "@/types/bindings";
+import { Environment } from "@/config/bindings";
 import { accountRoute } from "@/contents/account/account-route";
 
 

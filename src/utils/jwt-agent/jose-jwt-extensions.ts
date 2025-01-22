@@ -13,7 +13,8 @@ export const joseJwtAgent: IJwtAgent = {
 			...payload,			
 		}		
 		convertedPayload['idx'] = payload.idx
-		convertedPayload['usrType'] = payload.usrType
+		convertedPayload['usr'] = payload.usr
+		convertedPayload['tkn'] = payload.tkn
 	
 		try {
 			const secretKey = new TextEncoder().encode(signatureKey ?? "")
@@ -36,7 +37,8 @@ export const joseJwtAgent: IJwtAgent = {
 			const convertedPayload: IJwtPayload = {				
 				...payload,
 				idx: payload['idx'] as string,
-				usrType: payload['usrType'] as string,
+				usr: payload['usrType'] as string,
+				tkn: payload['tkn'] as string,
 			}
 	
 			return convertedPayload

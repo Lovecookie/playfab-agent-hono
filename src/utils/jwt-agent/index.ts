@@ -11,11 +11,11 @@ export class JwtAgent implements IJwtAgent {
 		this.agent = type === 'hono' ? honoJwtAgent : joseJwtAgent;
 	}
 
-	signAsync(payload: any, expiredIn: JwtExpiredInType, signatureKey: string): Promise<string | null> {
-		return this.agent.signAsync(payload, expiredIn, signatureKey)
+	async signAsync(payload: any, expiredIn: JwtExpiredInType, signatureKey: string): Promise<string | null> {
+		return await this.agent.signAsync(payload, expiredIn, signatureKey)
 	}
 
-	verifyAsync(token: string, signatureKey: string): Promise<any | null> {
-		return this.agent.verifyAsync(token, signatureKey)
+	async verifyAsync(token: string, signatureKey: string): Promise<any | null> {
+		return await this.agent.verifyAsync(token, signatureKey)
 	}
 }

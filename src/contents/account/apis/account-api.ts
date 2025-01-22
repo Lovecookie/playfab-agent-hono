@@ -1,5 +1,5 @@
 import { Hono, Context } from "hono";
-import { Environment } from "@/types/bindings";
+import { Environment } from "@/config/bindings";
 
 
 export const accountApi = new Hono<Environment>()

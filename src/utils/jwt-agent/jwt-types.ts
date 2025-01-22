@@ -1,4 +1,13 @@
 
+
+export const JwtTokenType = {
+	Access: 'access',
+	Refresh: 'refresh',
+	Entra: 'entra',
+	ResetPassword: 'resetPassword'
+} as const
+export type JwtTokenType = typeof JwtTokenType[keyof typeof JwtTokenType]
+
 export const JwtExpiredInType = {
 	OneHour: '1h',
 	OneDay: '1d',
@@ -10,7 +19,8 @@ export type JwtExpiredInType = typeof JwtExpiredInType[keyof typeof JwtExpiredIn
 
 export interface IJwtPayload {
 	idx: string
-	usrType: string
+	usr: string
+	tkn: string
 
 	iss?: string
 	sub?: string

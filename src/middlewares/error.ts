@@ -4,7 +4,7 @@ import { object, ZodError } from "zod";
 import { fromError } from 'zod-validation-error'
 import httpStatus from 'http-status';
 
-import { Environment } from "@/types/bindings";
+import { Environment } from "@/config/bindings";
 import { ApiError } from "@/utils/api-error";
 
 

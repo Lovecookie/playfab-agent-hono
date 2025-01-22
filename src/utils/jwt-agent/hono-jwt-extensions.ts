@@ -2,7 +2,7 @@ import { verify, sign } from 'hono/jwt'
 import { JWTPayload } from 'hono/utils/jwt/types'
 import { SignatureKey } from 'hono/utils/jwt/jws'
 import { SignatureAlgorithm } from 'hono/utils/jwt/jwa'
-import { IJwtAgent } from '@/utils/jwt/jwt-types'
+import { IJwtAgent } from '@/utils/jwt-agent/jwt-types'
 
 
 
@@ -39,7 +39,8 @@ export const honoJwtAgent: IJwtAgent = {
 				exp: exp,
 			}
 			convertedPayload['idx'] = payload.idx;
-			convertedPayload['usrType'] = payload.usrType;
+			convertedPayload['usrType'] = payload.usr;
+			convertedPayload['tkn'] = payload.tkn;
 
 			const token = await sign(convertedPayload, signatureKey, alg);
 
@@ -55,10 +56,11 @@ export const honoJwtAgent: IJwtAgent = {
 		try {
 			const alg = JWT_HEADER.alg as SignatureAlgorithm;
 			const payload = await verify(token, signatureKey, alg);			
-			const convertedPayload: IJwtPayload = {
-				idx: payload['idx'] as string,
-				usrType: payload['usrType'] as string,
+			const convertedPayload: IJwtPayload = {				
 				...payload,				
+				idx: payload['idx'] as string,
+				usr: payload['usrType'] as string,
+				tkn: payload['tkn'] as string,
 			}
 
 			return convertedPayload;
