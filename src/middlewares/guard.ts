@@ -37,7 +37,7 @@ export const guardMiddleware = (): MiddlewareHandler<Environment> =>
 			throw new ApiError(httpStatus.UNAUTHORIZED, 'Unauthorized request')
 		}
 
-		ctx.set('payload', payload)		
+		ctx.set('payload', payload)
 
 		await next();
 	}

@@ -2,25 +2,25 @@ import { Hono } from "hono";
 import { Environment } from "@/config/bindings";
 
 
-export const accountApi = new Hono<Environment>()
-.post('/login', async (ctx) => {
+export const manageApi = new Hono<Environment>()
+.post('/usr', async (ctx) => {
 	const { email, password } = await ctx.req.json<{
 		email: string;
 		password: string;
 	}>();
 
 	return ctx.json(
-		{ message: "Login successful", email, password }
+		{ message: "User successful", email, password }
 	)	
 })
 
-.post('/register', async (ctx) => {
+.post('/setting', async (ctx) => {
 	const { email, password } = await ctx.req.json<{
 		email: string;
 		password: string;
 	}>();
 
 	return ctx.json(
-		{ message: "Register successful", email, password }
+		{ message: "Setting successful", email, password }
 	)
 })

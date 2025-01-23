@@ -1,7 +1,9 @@
 import * as jose from 'jose';
 import { JWTHeaderParameters } from 'jose/dist/types';
 
+
 import { IJwtAgent, IJwtPayload, JWT_HEADER, JwtExpiredInType } from './jwt-types';
+
 
 export const joseJwtAgent: IJwtAgent = {
 	signAsync: async (payload: IJwtPayload, expiredIn: JwtExpiredInType, signatureKey: string): Promise<string | null> => {
